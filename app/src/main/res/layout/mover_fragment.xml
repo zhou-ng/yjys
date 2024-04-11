@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <include layout="@layout/home_search"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv"
+        android:visibility="visible">
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/catid"/>
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/yearid"/>
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/areaid"/>
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/actid"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mv"
+        android:visibility="gone">
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mcatid"/>
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/myearid"/>
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mareaid"/>
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mactid"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/zv"
+        android:visibility="gone">
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/zcatid"/>
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/zactid"/>
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/zareaid"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dv"
+        android:visibility="gone">
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dcatid"/>
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dyearid"/>
+        <com.example.yjys.myview.CategoryView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dareaid"/>
+    </LinearLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/heng"
+        android:layout_height="wrap_content">
+
+        <com.androidkun.xtablayout.XTabLayout
+            android:id="@+id/tabMenu"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:xTabDisplayNum="4"
+
+            app:xTabIndicatorColor="#03A9F4"
+            app:xTabIndicatorHeight="2dp"
+            app:xTabIndicatorWidth="25dp"
+
+            app:xTabMode="scrollable"
+
+            app:xTabSelectedTextColor="#03A9F4"
+            app:xTabSelectedTextSize="15sp"
+            app:xTabTextColor="#5B000000"
+            app:xTabTextSize="15sp"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:src="@drawable/filter"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/filter"
+            android:layout_height="30dp"/>
+
+    </LinearLayout>
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/heng"
+        android:id="@+id/refresh">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tabMenu"
+            android:id="@+id/moverList"/>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+
+</RelativeLayout>
+
+</LinearLayout>

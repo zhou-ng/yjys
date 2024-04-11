@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/left_white"
+        android:id="@+id/imgback"
+        android:scaleType="fitCenter"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_weight="1"
+        android:layout_height="35dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="15sp"
+        android:layout_weight="10"
+        android:id="@+id/comTitle"
+        android:textColor="#ffffff"
+        android:text="标题"/>
+
+    <!--<TextView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="15sp"
+        android:id="@+id/score"
+        android:textColor="#ffffff"
+        android:text=""/>-->
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/setter"
+        android:id="@+id/setter"
+        android:scaleType="fitCenter"
+        android:layout_weight="1"
+        android:layout_height="35dp"/>
+</LinearLayout>

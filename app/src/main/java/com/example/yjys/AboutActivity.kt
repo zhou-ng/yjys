@@ -27,13 +27,14 @@ class AboutActivity : AppCompatActivity() {
             startActivity(intent)
         }
         suppose_btn.setOnClickListener {
-            Toast.makeText(this,"开发中",Toast.LENGTH_SHORT).show()
-        }
-        checkVersion_btn.setOnClickListener {
-            Toast.makeText(this,"开发中",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"感谢支持",Toast.LENGTH_SHORT).show()
         }
         feedback_btn.setOnClickListener {
             Toast.makeText(this,"开发中",Toast.LENGTH_SHORT).show()
         }
+        checkVersion_btn.setOnClickListener {
+            Toast.makeText(this,"已是最新版本",Toast.LENGTH_SHORT).show()
+        }
+
     }
 }

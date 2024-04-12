@@ -44,6 +44,7 @@ class FaxianFragment() : Fragment() {
                 }
                 2 -> {
                     Toast.makeText(context, "学习中...", Toast.LENGTH_SHORT).show()
+//                    startActivity(Intent(context,PlaceFragment::class.java))
                 }
             }
         }

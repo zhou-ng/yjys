@@ -13,6 +13,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.yjys.AboutActivity
+import com.example.yjys.Favorites
 import com.example.yjys.LoginActivity
 import com.example.yjys.R
 import com.example.yjys.application.Application
@@ -112,6 +114,11 @@ class MSelectRecyclerViewAdapter(val context: Context, data: List<FaXian>) :
                     edit?.putString("key", "")
                     edit?.commit()
                     val intent = Intent(context, LoginActivity::class.java)
+                    context.startActivity(intent)
+                }
+                //跳转关于我们页
+                3 ->{
+                    val intent = Intent(context, AboutActivity::class.java)
                     context.startActivity(intent)
                 }
             }

@@ -32,7 +32,9 @@ class UserFragment() : Fragment() {
     var gridView : GridView? =null
     val data = listOf<FaXian>(FaXian("分享给朋友",R.drawable.share),
         FaXian("永久社区官网",R.drawable.jizhan),
-        FaXian("退出登陆",R.drawable.wangguan))
+        FaXian("退出登陆",R.drawable.wangguan),
+        FaXian("关于我们",R.drawable.mover)
+    )
 
     val datas = arrayListOf<FaXian>(
         FaXian("我的收藏",R.drawable.shouchang_white), FaXian("播放历史",
@@ -62,6 +64,7 @@ class UserFragment() : Fragment() {
         gridView?.setOnItemClickListener { parent, view, position, id ->
             when(position){
                 0 -> {
+                    //
                     val intent = Intent(context, Favorites::class.java)
                     startActivity(intent)
                 }

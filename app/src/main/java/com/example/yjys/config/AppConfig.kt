@@ -7,6 +7,9 @@ class AppConfig {
 
     companion object{
         @JvmStatic
+        val BASE_URL = "https://api.caiyunapp.com/"
+
+        @JvmStatic
         val homeBannerUrl = "https://api.web.360kan.com/v1/block?blockid=522"
 
         @JvmStatic

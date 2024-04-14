@@ -1,6 +1,8 @@
 package com.example.yjys.application
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.multidex.MultiDex
 import com.example.yjys.config.AppConfig
@@ -25,6 +27,9 @@ class Application() : Application() {
 
         var umVerifyHelper : UMVerifyHelper? = null
 
+        const val TOKEN = "JvPFmT44zDaKsQJJ"
+        @SuppressLint("StaticFieldLeak")
+        lateinit var context: Context
         @JvmName("getInstance1")
         @JvmStatic
         fun getInstance(): Application? {
@@ -43,6 +48,7 @@ class Application() : Application() {
         instance = this
         mTencent = Tencent.createInstance(AppConfig.TappId, applicationContext);
 
+        context = applicationContext
 
         // 在调用TBS初始化、创建WebView之前进行如下配置
         val map = mutableMapOf<String, Any>()

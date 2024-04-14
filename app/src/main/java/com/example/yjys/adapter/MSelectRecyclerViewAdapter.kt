@@ -50,7 +50,7 @@ class MSelectRecyclerViewAdapter(val context: Context, data: List<FaXian>) :
 
     }
 
-    val dataList=data
+    val dataList = data
 
     inner class MyHolder(view: View) : RecyclerView.ViewHolder(view) {
         var home : LinearLayout = view.findViewById(R.id.mSelect_item)
@@ -110,14 +110,14 @@ class MSelectRecyclerViewAdapter(val context: Context, data: List<FaXian>) :
                 }
                 2 -> {
                     Application.mTencent?.logout(context)
-                    val edit = context?.getSharedPreferences("token", 0)?.edit()
+                    val edit = context.getSharedPreferences("token", 0)?.edit()
                     edit?.putString("key", "")
                     edit?.commit()
                     val intent = Intent(context, LoginActivity::class.java)
                     context.startActivity(intent)
                 }
                 //跳转关于我们页
-                3 ->{
+                3 -> {
                     val intent = Intent(context, AboutActivity::class.java)
                     context.startActivity(intent)
                 }

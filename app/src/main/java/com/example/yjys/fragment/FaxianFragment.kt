@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.yjys.R
+import com.example.yjys.WeatherMainActivity
 import com.example.yjys.adapter.FaXianGridViewAdapter
 import com.example.yjys.entity.FaXian
 import com.example.yjys.faxianui.MusicActivity
@@ -43,8 +44,8 @@ class FaxianFragment() : Fragment() {
                     startActivity(Intent(context,MusicActivity::class.java))
                 }
                 2 -> {
-                    Toast.makeText(context, "学习中...", Toast.LENGTH_SHORT).show()
-//                    startActivity(Intent(context,PlaceFragment::class.java))
+//                    Toast.makeText(context, "学习中...", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(context,WeatherMainActivity::class.java))
                 }
             }
         }

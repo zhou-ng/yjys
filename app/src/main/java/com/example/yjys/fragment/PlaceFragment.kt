@@ -60,7 +60,7 @@ class PlaceFragment : Fragment() {
 //        }, 200)
 
         binding.searchPlaceEdit.doAfterTextChanged {
-            val content = it.toString().trim()  //去除首位空格
+            val content = it.toString().trim()  //去除首尾空格
             if (content.isNotEmpty()) {
                 viewModel.searchPlaces(content)
             } else {

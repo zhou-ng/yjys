@@ -3,35 +3,40 @@ package com.example.yjys
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.CheckBox
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.children
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yjys.adapter.FavoritesAdapter
 import com.example.yjys.entity.Favorite
 import com.example.yjys.utils.MyDb
-import kotlinx.android.synthetic.main.activity_favorites.*
-import kotlinx.android.synthetic.main.common_title.*
+import kotlinx.android.synthetic.main.activity_favorites.del
+import kotlinx.android.synthetic.main.activity_favorites.quan
+import kotlinx.android.synthetic.main.activity_favorites.rev
+import kotlinx.android.synthetic.main.common_title.comTitle
+import kotlinx.android.synthetic.main.common_title.imgback
 
-class Favorites : AppCompatActivity() {
+class LikeActivity : AppCompatActivity() {
 
-    var myDb : SQLiteDatabase? = null
-    var list = mutableListOf<Favorite>()
-    var favoritesAdapter : FavoritesAdapter? = null
 
+    private  var myDb : SQLiteDatabase? = null
+    private var list = mutableListOf<Favorite>()
+    private var favoritesAdapter : FavoritesAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favorites)
+        setContentView(R.layout.activity_like)
         supportActionBar?.hide()
         val db = MyDb(this, "myData.db", 1)
         myDb = db.writableDatabase
 
         val linearLayoutManager = LinearLayoutManager(this)
-        rev.layoutManager=linearLayoutManager
+        rev.layoutManager = linearLayoutManager
         favoritesAdapter = FavoritesAdapter(this, list)
         rev.adapter = favoritesAdapter
         ref()
+
+        comTitle.text="我的点赞"
+        imgback.setOnClickListener{
+            finish()
+        }
 
         quan.setOnClickListener {
             favoritesAdapter?.selectAllItems()
@@ -40,12 +45,6 @@ class Favorites : AppCompatActivity() {
         del.setOnClickListener {
             delSelectedItems()
         }
-
-        comTitle.text="我的收藏"
-        imgback.setOnClickListener{
-            finish()
-        }
-
     }
 
     override fun onRestart() {
@@ -53,9 +52,9 @@ class Favorites : AppCompatActivity() {
         ref()
     }
 
-    fun ref(){
+    private fun ref(){
         list.clear()
-        val rawQuery = myDb?.rawQuery("select * from favorites", null)
+        val rawQuery = myDb?.rawQuery("select * from likes", null)
         if (rawQuery?.moveToFirst()!!){
             while (rawQuery.moveToNext()){
                 val id = rawQuery.getInt(rawQuery.getColumnIndex("id"))
@@ -69,6 +68,7 @@ class Favorites : AppCompatActivity() {
         }
         favoritesAdapter?.notifyDataSetChanged()
     }
+
     private fun delSelectedItems() {
         val selectedItems = mutableListOf<Favorite>()
         for (favorite in list) {
@@ -77,14 +77,13 @@ class Favorites : AppCompatActivity() {
             }
         }
         if (selectedItems.isEmpty()){
-            Toast.makeText(this,"您未选择任何选项", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"您未选择任何选项",Toast.LENGTH_SHORT).show()
             return
         }
         for (selectedItem in selectedItems) {
-            myDb?.execSQL("DELETE FROM favorites WHERE id = ?", arrayOf(selectedItem.id))
+            myDb?.execSQL("DELETE FROM likes WHERE id = ?", arrayOf(selectedItem.id))
             list.remove(selectedItem)
         }
         favoritesAdapter?.notifyDataSetChanged()
     }
-
 }

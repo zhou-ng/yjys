@@ -38,7 +38,8 @@ class UserFragment() : Fragment() {
 
     val datas = arrayListOf<FaXian>(
         FaXian("我的收藏",R.drawable.shouchang_white), FaXian("播放历史",
-        R.drawable.lishi_white), FaXian("反馈中心",R.drawable.fankui_white)
+        R.drawable.lishi_white), FaXian("反馈中心",R.drawable.fankui_white),
+        FaXian("我的点赞",R.drawable.my_dianzan)
     )
 
     override fun onCreateView(
@@ -79,6 +80,10 @@ class UserFragment() : Fragment() {
                     } else {
                         Toast.makeText(context, "请安装QQ客户端", Toast.LENGTH_SHORT).show()
                     }
+                }
+                3 ->{
+                    val intent = Intent(context,LikeActivity::class.java)
+                    startActivity(intent)
                 }
             }
 

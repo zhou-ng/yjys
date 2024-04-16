@@ -14,7 +14,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yjys.AboutActivity
-import com.example.yjys.Favorites
 import com.example.yjys.LoginActivity
 import com.example.yjys.R
 import com.example.yjys.application.Application

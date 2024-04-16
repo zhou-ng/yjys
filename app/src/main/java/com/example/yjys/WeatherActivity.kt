@@ -80,6 +80,7 @@ class WeatherActivity : AppCompatActivity() {
         if (viewModel.placeName.isEmpty()) {
             viewModel.placeName = intent.getStringExtra("place_name") ?: ""
         }
+
         viewModel.weatherLiveData.observe(this, Observer { result ->
             val weather = result.getOrNull()
             if (weather != null) {
@@ -155,8 +156,8 @@ class WeatherActivity : AppCompatActivity() {
         ultravioletText?.text = lifeIndex.ultraviolet[0].desc
         carWashingText?.text = lifeIndex.carWashing[0].desc
         weatherLayout?.visibility = View.VISIBLE
+
+
     }
-
-
 
 }

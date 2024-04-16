@@ -16,6 +16,20 @@ object ServiceCreator {
     inline fun <reified T> create():T = create(T::class.java)
 }
 
+object StandardMapServiceCreator {
+    private const val BASE_URL = "http://earthdq.thread0.com:8000/"
+
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    fun <T> create(serviceClass: Class<T>): T = retrofit.create(serviceClass)
+
+    inline fun <reified T> create(): T = create(T::class.java)
+}
+
+
 /*
 4）创建一个Retrofit构建器
 */

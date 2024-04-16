@@ -17,6 +17,7 @@
             android:gravity="center_horizontal|center_vertical"
             android:checked="false"
             android:id="@+id/ck"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -52,4 +53,5 @@
             android:singleLine="true" />
 
     </LinearLayout>
+
 </LinearLayout>

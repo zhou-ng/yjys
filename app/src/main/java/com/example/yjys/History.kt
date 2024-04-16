@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.CheckBox
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.children
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yjys.adapter.FavoritesAdapter
@@ -18,7 +19,6 @@ class History : AppCompatActivity() {
     var myDb : SQLiteDatabase? = null
     var list = mutableListOf<Favorite>()
     var favoritesAdapter : FavoritesAdapter? = null
-    var flag = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,36 +35,14 @@ class History : AppCompatActivity() {
         rev.adapter = favoritesAdapter
         ref()
         quan.setOnClickListener {
-            val children = rev.children
-            if (flag){
-                flag=false
-                for (it in children){
-                    val ck = it.findViewById<CheckBox>(R.id.ck)
-                    ck.isChecked = true
-                }
-            }else{
-                flag=true
-                for (it in children){
-                    val ck = it.findViewById<CheckBox>(R.id.ck)
-                    ck.isChecked = false
-                }
-            }
-
+           favoritesAdapter?.selectAllItems()
         }
 
         del.setOnClickListener {
-            val children = rev.children
-            for (it in children){
-                val ck = it.findViewById<CheckBox>(R.id.ck)
-                val tk = it.findViewById<TextView>(R.id.tk)
-                if (ck.isChecked){
-                    myDb?.execSQL("delete from history where id = ? ", arrayOf(tk.text.toString().toInt()))
-                }
-            }
-            ref()
+            delSelectedItems()
         }
 
-        comTitle.text="我的记录"
+        comTitle.text="播放历史"
         imgback.setOnClickListener{
             finish()
         }
@@ -89,6 +67,24 @@ class History : AppCompatActivity() {
                 list.add(Favorite(id, title, img, url))
             }
 
+        }
+        favoritesAdapter?.notifyDataSetChanged()
+    }
+
+    private fun delSelectedItems(){
+        val selectedItems = mutableListOf<Favorite>()
+        for (favorite in  list){
+            if (favorite in list){
+                selectedItems.add(favorite)
+            }
+        }
+        if (selectedItems.isEmpty()){
+            Toast.makeText(this,"未选择任何选项",Toast.LENGTH_SHORT).show()
+            return
+        }
+        for (selectedItem in selectedItems){
+            myDb?.execSQL("DELETE FROM history WHERE id = ?", arrayOf(selectedItem.id))
+            list.remove(selectedItem)
         }
         favoritesAdapter?.notifyDataSetChanged()
     }

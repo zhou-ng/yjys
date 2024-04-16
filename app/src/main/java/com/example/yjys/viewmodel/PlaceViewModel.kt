@@ -8,7 +8,9 @@ import com.example.yjys.net.Repository
 
 class PlaceViewModel : ViewModel() {
     private val searchLiveData = MutableLiveData<String>()
+
     val placeList = ArrayList<Place>()
+
     val placeLiveData = searchLiveData.switchMap { query ->
         Repository.searchPlaces(query)
     }

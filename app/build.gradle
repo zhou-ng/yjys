@@ -122,6 +122,13 @@ dependencies {
     //音乐播放缓存
     implementation 'com.danikula:videocache:2.7.0'
 
+    implementation 'com.github.bumptech.glide:glide:4.12.0'  // 添加 Glide 依赖项
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'  // 添加 Glide 注解处理器
+
+    //使用MotionLayout动画
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
+
+
     //recyclerview库
 /*    implementation 'com.github.momodae.RecyclerViewLibrary2:layoutmanager:1.0.1'
     implementation 'com.github.momodae.RecyclerViewLibrary2:pulltorefresh:1.0.1'

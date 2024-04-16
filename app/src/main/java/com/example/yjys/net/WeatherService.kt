@@ -1,7 +1,5 @@
 package com.example.yjys.net
 
-
-
 import com.example.yjys.application.Application
 import com.example.yjys.model.DailyResponse
 import com.example.yjys.model.RealtimeResponse

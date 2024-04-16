@@ -13,10 +13,14 @@ object SunnyWeatherNetwork {
 
     private val weatherService = ServiceCreator.create(WeatherService::class.java)
 
+//    private val standardMapService = ServiceCreator.create(StandardMapServiceCreator::class.java)
+
     suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await()
 
     suspend fun getDailyWeather(lng: String, lat: String) = weatherService.getDailyWeather(lng, lat).await()
     suspend fun getRealtimeWeather(lng: String, lat: String) = weatherService.getRealtimeWeather(lng, lat).await()
+
+//    suspend fun getPageData(pageNo: Int) = standardMapService.getPageData(pageNo).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
@@ -34,7 +38,3 @@ object SunnyWeatherNetwork {
         }
     }
 }
-
-/*
-5）定义一个统一的网络数据源访问入口，对所有网络请求的api进行封装
-*/

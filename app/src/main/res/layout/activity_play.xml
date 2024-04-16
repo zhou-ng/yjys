@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="线路："
+                android:text="线路:"
                 android:textSize="20sp"
                 android:gravity="left"
                 android:layout_gravity="center_horizontal|center_vertical"/>
@@ -58,7 +58,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="播放源："
+                android:text="播放源:"
                 android:textSize="20sp"
                 android:gravity="left"
                 android:layout_gravity="center_horizontal|center_vertical"/>
@@ -74,20 +74,30 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="65dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
+
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:id="@+id/dianzan"
+                android:src="@drawable/dianzan_white"
+                android:clickable="true"
+                android:longClickable="true"/>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:scaleType="fitCenter"
                 android:id="@+id/chang"
-                android:src="@drawable/shouchang_blue"/>
+                android:src="@drawable/shouchang_blue" />
 
         </LinearLayout>
-
-
 
     </LinearLayout>
 
@@ -107,11 +117,6 @@
         android:layout_height="5dp"
         android:id="@+id/view2"
         android:background="@color/linesColor"/>
-<!--    <Button
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="dianji"
-        android:id="@+id/dian"/>-->
 
     <ScrollView
         android:layout_width="match_parent"

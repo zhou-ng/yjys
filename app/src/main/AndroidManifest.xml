@@ -38,6 +38,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".OrangeActivity"
+            android:exported="false" />
+        <activity
             android:name=".LikeActivity"
             android:exported="true" />
         <activity

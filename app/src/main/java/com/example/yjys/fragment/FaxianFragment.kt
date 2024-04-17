@@ -19,7 +19,7 @@ class FaxianFragment() : Fragment() {
 
     var inflate : View? = null
     val data = arrayListOf<FaXian>(FaXian("全国天气",R.drawable.tianqi),FaXian("在线音乐",
-        R.drawable.music), FaXian("苹果",R.drawable.apple_pic))
+        R.drawable.music), FaXian("苹果",R.drawable.apple_pic),FaXian("橙子",R.drawable.orange_pic))
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +46,9 @@ class FaxianFragment() : Fragment() {
                 2 -> {
 //                    Toast.makeText(context, "学习中...", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(context,WeatherMainActivity::class.java))
+                }
+                3 -> {
+                    Toast.makeText(context, "开发中...", Toast.LENGTH_SHORT).show()
                 }
             }
         }

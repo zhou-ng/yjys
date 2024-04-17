@@ -233,7 +233,7 @@ class Play : BaseActivity() {
                 upvote.setAnimation("upvoteLottie.json")
                 upvote.visibility = View.VISIBLE
                 //设置动画播放速度
-                upvote.speed = 3f
+                upvote.speed = 2.5f
                 //开始播放动画
                 upvote.playAnimation()
             } else {

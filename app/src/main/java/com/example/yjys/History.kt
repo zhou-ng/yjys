@@ -35,7 +35,8 @@ class History : AppCompatActivity() {
         rev.adapter = favoritesAdapter
         ref()
         quan.setOnClickListener {
-           favoritesAdapter?.selectAllItems()
+            favoritesAdapter?.selectAllItems()
+            updateSelectAllButton()
         }
 
         del.setOnClickListener {
@@ -71,21 +72,31 @@ class History : AppCompatActivity() {
         favoritesAdapter?.notifyDataSetChanged()
     }
 
-    private fun delSelectedItems(){
+    private fun updateSelectAllButton() {
+        val isAllSelected = favoritesAdapter?.isAllItemsSelected() ?: false
+        if (isAllSelected) {
+            quan.text = "全不选"
+        } else {
+            quan.text = "全选"
+        }
+    }
+
+    private fun delSelectedItems() {
         val selectedItems = mutableListOf<Favorite>()
-        for (favorite in  list){
-            if (favorite in list){
+        for (favorite in list) {
+            if (favorite.checkSelect) { // 只添加被选中的项
                 selectedItems.add(favorite)
             }
         }
-        if (selectedItems.isEmpty()){
-            Toast.makeText(this,"未选择任何选项",Toast.LENGTH_SHORT).show()
+        if (selectedItems.isEmpty()) {
+            Toast.makeText(this, "未选择任何选项", Toast.LENGTH_SHORT).show()
             return
         }
-        for (selectedItem in selectedItems){
+        for (selectedItem in selectedItems) {
             myDb?.execSQL("DELETE FROM history WHERE id = ?", arrayOf(selectedItem.id))
             list.remove(selectedItem)
         }
         favoritesAdapter?.notifyDataSetChanged()
+        updateSelectAllButton()
     }
 }

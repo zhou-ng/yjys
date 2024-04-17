@@ -60,11 +60,18 @@ class FavoritesAdapter(val context: Context, data: List<Favorite>) :
     fun selectAllItems() {
         isAllSelected = !isAllSelected
         for (favorite in dataList) {
-            if (!favorite.checkSelect){
-                favorite.checkSelect = true
-            }
+            favorite.checkSelect = isAllSelected
         }
         notifyDataSetChanged()
+    }
+
+    fun isAllItemsSelected(): Boolean {
+        for (favorite in dataList) {
+            if (!favorite.checkSelect) {
+                return false
+            }
+        }
+        return true
     }
 
 }

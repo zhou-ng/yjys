@@ -15,8 +15,6 @@ import kotlinx.android.synthetic.main.common_title.comTitle
 import kotlinx.android.synthetic.main.common_title.imgback
 
 class LikeActivity : AppCompatActivity() {
-
-
     private  var myDb : SQLiteDatabase? = null
     private var list = mutableListOf<Favorite>()
     private var favoritesAdapter : FavoritesAdapter? = null
@@ -40,6 +38,7 @@ class LikeActivity : AppCompatActivity() {
 
         quan.setOnClickListener {
             favoritesAdapter?.selectAllItems()
+            updateSelectAllButton()
         }
 
         del.setOnClickListener {
@@ -69,6 +68,14 @@ class LikeActivity : AppCompatActivity() {
         favoritesAdapter?.notifyDataSetChanged()
     }
 
+    private fun updateSelectAllButton() {
+        val isAllSelected = favoritesAdapter?.isAllItemsSelected() ?: false
+        if (isAllSelected) {
+            quan.text = "全不选"
+        } else {
+            quan.text = "全选"
+        }
+    }
     private fun delSelectedItems() {
         val selectedItems = mutableListOf<Favorite>()
         for (favorite in list) {
@@ -85,5 +92,6 @@ class LikeActivity : AppCompatActivity() {
             list.remove(selectedItem)
         }
         favoritesAdapter?.notifyDataSetChanged()
+        updateSelectAllButton()
     }
 }

@@ -35,6 +35,8 @@ class Favorites : AppCompatActivity() {
 
         quan.setOnClickListener {
             favoritesAdapter?.selectAllItems()
+            updateSelectAllButton()
+
         }
 
         del.setOnClickListener {
@@ -62,12 +64,20 @@ class Favorites : AppCompatActivity() {
                 val title =rawQuery.getString(rawQuery.getColumnIndex("title"))
                 val img =rawQuery.getString(rawQuery.getColumnIndex("img"))
                 val url =rawQuery.getString(rawQuery.getColumnIndex("url"))
-
                 list.add(Favorite(id, title, img, url))
             }
 
         }
         favoritesAdapter?.notifyDataSetChanged()
+    }
+
+    private fun updateSelectAllButton() {
+        val isAllSelected = favoritesAdapter?.isAllItemsSelected() ?: false
+        if (isAllSelected) {
+            quan.text = "全不选"
+        } else {
+            quan.text = "全选"
+        }
     }
     private fun delSelectedItems() {
         val selectedItems = mutableListOf<Favorite>()
@@ -85,6 +95,8 @@ class Favorites : AppCompatActivity() {
             list.remove(selectedItem)
         }
         favoritesAdapter?.notifyDataSetChanged()
+        updateSelectAllButton()
+
     }
 
 }

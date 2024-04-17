@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -78,13 +78,20 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/upvote"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:lottie_fileName="upvoteLottie.json"
+                android:layout_weight="1"
+                android:visibility="gone" />
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:scaleType="fitCenter"
-                android:id="@+id/dianzan"
+                android:id="@+id/praise"
                 android:src="@drawable/dianzan_white"
                 android:clickable="true"
                 android:longClickable="true"/>

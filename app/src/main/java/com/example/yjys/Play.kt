@@ -1,5 +1,6 @@
 package com.example.yjys
 
+import android.animation.Animator
 import android.app.Activity
 import android.content.Context
 import android.content.pm.ActivityInfo
@@ -183,9 +184,9 @@ class Play : BaseActivity() {
         //查询是否点赞
         val rawQuery2 = myDb?.rawQuery("select id from likes where title = ?", arrayOf(title))
         if (rawQuery2?.count == 0) {
-            dianzan.setImageResource(R.drawable.dianzan_white)
+            praise.setImageResource(R.drawable.dianzan_white)
         } else {
-            dianzan.setImageResource(R.drawable.dianzan_red)
+            praise.setImageResource(R.drawable.dianzan_red)
         }
 
 
@@ -214,7 +215,7 @@ class Play : BaseActivity() {
         }
 
         //点击点赞
-        dianzan.setOnClickListener {
+        praise.setOnClickListener {
             val zanQuery = myDb?.rawQuery(
                 "select id from likes where title = ?", arrayOf(title))
             if (zanQuery?.count == 0) {
@@ -226,13 +227,30 @@ class Play : BaseActivity() {
                         cattype
                     )
                 )
-                dianzan.setImageResource(R.drawable.dianzan_red)
-//                Toast.makeText(activity, "这视频真不错", Toast.LENGTH_SHORT).show()
+                praise.setImageResource(R.drawable.dianzan_red)
+                praise.visibility = View.GONE
+
+                upvote.setAnimation("upvoteLottie.json")
+                upvote.visibility = View.VISIBLE
+                //设置动画播放速度
+                upvote.speed = 3f
+                //开始播放动画
+                upvote.playAnimation()
             } else {
                 myDb?.execSQL("delete from likes where title=?", arrayOf(title))
-                dianzan.setImageResource(R.drawable.dianzan_white)
-//                Toast.makeText(activity, "已取消点赞", Toast.LENGTH_SHORT).show()
+                praise.setImageResource(R.drawable.dianzan_white)
             }
+
+            //动画效果监听
+            upvote.addAnimatorListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {}
+                override fun onAnimationEnd(animation: Animator) {
+                    upvote.visibility = View.GONE
+                    praise.visibility = View.VISIBLE
+                }
+                override fun onAnimationCancel(animation: Animator) {}
+                override fun onAnimationRepeat(animation: Animator) {}
+            })
         }
 
         loading(this)

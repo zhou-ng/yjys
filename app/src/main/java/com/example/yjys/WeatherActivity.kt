@@ -29,9 +29,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class WeatherActivity : AppCompatActivity() {
-
     val viewModel by lazy { ViewModelProviders.of(this).get(WeatherViewModel::class.java) }
-
     private lateinit var weatherBinding: ActivityWeatherBinding
 
     private var forecastLayout: LinearLayout? = null
@@ -136,10 +134,10 @@ class WeatherActivity : AppCompatActivity() {
             val view = LayoutInflater.from(this).inflate(
                 R.layout.forecast_item,
                 forecastLayout, false)
-            val dateInfo = view.findViewById(R.id.dateInfo) as TextView
-            val skyIcon = view.findViewById(R.id.skyIcon) as ImageView
-            val skyInfo = view.findViewById(R.id.skyInfo) as TextView
-            val temperatureInfo = view.findViewById(R.id.temperatureInfo) as TextView
+            val dateInfo = view.findViewById(R.id.hor_dateInfo) as TextView
+            val skyIcon = view.findViewById(R.id.hor_skyIcon) as ImageView
+            val skyInfo = view.findViewById(R.id.hor_skyInfo) as TextView
+            val temperatureInfo = view.findViewById(R.id.hor_temperatureInfo) as TextView
             val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             dateInfo.text = simpleDateFormat.format(skycon.date)
             val sky = getSky(skycon.value)
@@ -157,7 +155,5 @@ class WeatherActivity : AppCompatActivity() {
         carWashingText?.text = lifeIndex.carWashing[0].desc
         weatherLayout?.visibility = View.VISIBLE
 
-
     }
-
 }

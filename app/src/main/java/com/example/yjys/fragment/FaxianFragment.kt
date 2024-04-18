@@ -9,6 +9,7 @@ import android.widget.GridView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.yjys.OrangeActivity
 import com.example.yjys.R
 import com.example.yjys.WeatherMainActivity
 import com.example.yjys.adapter.FaXianGridViewAdapter
@@ -29,7 +30,6 @@ class FaxianFragment() : Fragment() {
         if(inflate == null){
             inflate = inflater.inflate(R.layout.faxian_fragment, container, false)
         }
-
         val title = inflate?.findViewById<TextView>(R.id.comTitle)
         title?.setText("发现")
         val gride = inflate?.findViewById<GridView>(R.id.gride)
@@ -39,7 +39,6 @@ class FaxianFragment() : Fragment() {
                 0 -> {
                     Toast.makeText(context, "开发中...", Toast.LENGTH_SHORT).show()
                 }
-
                 1 -> {
                     startActivity(Intent(context,MusicActivity::class.java))
                 }
@@ -48,11 +47,10 @@ class FaxianFragment() : Fragment() {
                     startActivity(Intent(context,WeatherMainActivity::class.java))
                 }
                 3 -> {
-                    Toast.makeText(context, "开发中...", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(context,OrangeActivity::class.java))
                 }
             }
         }
-
 
         return inflate
     }

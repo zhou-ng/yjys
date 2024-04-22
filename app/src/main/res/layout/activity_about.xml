@@ -54,7 +54,7 @@
             android:layout_height="75dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="70dp"
-            android:background="@drawable/apple_pic" />
+            android:background="@drawable/weather" />
 
         <TextView
             android:id="@+id/aboutName_tv"

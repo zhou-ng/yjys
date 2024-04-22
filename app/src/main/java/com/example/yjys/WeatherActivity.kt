@@ -109,11 +109,12 @@ class WeatherActivity : AppCompatActivity() {
         })
     }
 
+    // 下拉刷新
     fun refreshWeather() {
         viewModel.refreshWeather(viewModel.locationLng, viewModel.locationLat)
         swipeRefresh.isRefreshing = true
     }
-
+    // 根据从WeatherViewModel中获取的天气数据，填充布局中的数据
     private fun showWeatherInfo(weather: Weather) {
         placeName?.text = viewModel.placeName
         val realtime = weather.realtime

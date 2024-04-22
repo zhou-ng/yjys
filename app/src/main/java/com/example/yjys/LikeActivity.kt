@@ -9,7 +9,7 @@ import com.example.yjys.adapter.FavoritesAdapter
 import com.example.yjys.entity.Favorite
 import com.example.yjys.utils.MyDb
 import kotlinx.android.synthetic.main.activity_favorites.del
-import kotlinx.android.synthetic.main.activity_favorites.quan
+import kotlinx.android.synthetic.main.activity_favorites.selectAll
 import kotlinx.android.synthetic.main.activity_favorites.rev
 import kotlinx.android.synthetic.main.common_title.comTitle
 import kotlinx.android.synthetic.main.common_title.imgback
@@ -31,16 +31,17 @@ class LikeActivity : AppCompatActivity() {
         rev.adapter = favoritesAdapter
         ref()
 
-        comTitle.text="我的点赞"
+        comTitle.text="我的点赞"  // 设置页面标题
+        //  页面返回
         imgback.setOnClickListener{
             finish()
         }
-
-        quan.setOnClickListener {
+        //  全选
+        selectAll.setOnClickListener {
             favoritesAdapter?.selectAllItems()
             updateSelectAllButton()
         }
-
+        // 删除
         del.setOnClickListener {
             delSelectedItems()
         }
@@ -51,7 +52,7 @@ class LikeActivity : AppCompatActivity() {
         ref()
     }
 
-    private fun ref(){
+    fun ref(){
         list.clear()
         val rawQuery = myDb?.rawQuery("select * from likes", null)
         if (rawQuery?.moveToFirst()!!){
@@ -71,9 +72,9 @@ class LikeActivity : AppCompatActivity() {
     private fun updateSelectAllButton() {
         val isAllSelected = favoritesAdapter?.isAllItemsSelected() ?: false
         if (isAllSelected) {
-            quan.text = "全不选"
+            selectAll.text = "全不选"
         } else {
-            quan.text = "全选"
+            selectAll.text = "全选"
         }
     }
     private fun delSelectedItems() {

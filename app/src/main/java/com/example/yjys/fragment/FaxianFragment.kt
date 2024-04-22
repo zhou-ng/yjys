@@ -9,7 +9,7 @@ import android.widget.GridView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.yjys.OrangeActivity
+import com.example.yjys.PictureActivity
 import com.example.yjys.R
 import com.example.yjys.WeatherMainActivity
 import com.example.yjys.adapter.FaXianGridViewAdapter
@@ -20,7 +20,7 @@ class FaxianFragment() : Fragment() {
 
     var inflate : View? = null
     val data = arrayListOf<FaXian>(FaXian("全国天气",R.drawable.tianqi),FaXian("在线音乐",
-        R.drawable.music), FaXian("苹果",R.drawable.apple_pic),FaXian("橙子",R.drawable.orange_pic))
+        R.drawable.music), FaXian("彩云天气",R.drawable.weather),FaXian("图片展示",R.drawable.picture))
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +47,7 @@ class FaxianFragment() : Fragment() {
                     startActivity(Intent(context,WeatherMainActivity::class.java))
                 }
                 3 -> {
-                    startActivity(Intent(context,OrangeActivity::class.java))
+                    startActivity(Intent(context,PictureActivity::class.java))
                 }
             }
         }

@@ -3,10 +3,7 @@ package com.example.yjys
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.CheckBox
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.children
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yjys.adapter.FavoritesAdapter
 import com.example.yjys.entity.Favorite
@@ -34,7 +31,7 @@ class History : AppCompatActivity() {
         favoritesAdapter = FavoritesAdapter(this, list)
         rev.adapter = favoritesAdapter
         ref()
-        quan.setOnClickListener {
+        selectAll.setOnClickListener {
             favoritesAdapter?.selectAllItems()
             updateSelectAllButton()
         }
@@ -75,9 +72,9 @@ class History : AppCompatActivity() {
     private fun updateSelectAllButton() {
         val isAllSelected = favoritesAdapter?.isAllItemsSelected() ?: false
         if (isAllSelected) {
-            quan.text = "全不选"
+            selectAll.text = "全不选"
         } else {
-            quan.text = "全选"
+            selectAll.text = "全选"
         }
     }
 

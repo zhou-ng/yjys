@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.yjys">
 
     <queries>
         <package android:name="com.tencent.mobileqq" />
         <package android:name="com.tencent.tim" />
         <package android:name="com.tencent.mm" />
-        <package android:name="com.tencent.qqlite" />
         <package android:name="com.qzone" />
         <package android:name="com.tencent.tbs" />
         <package android:name="com.tencent.qqlite" />
     </queries>
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -38,7 +37,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name=".OrangeActivity"
+            android:name=".PictureActivity"
             android:exported="false" />
         <activity
             android:name=".LikeActivity"
@@ -79,11 +78,6 @@
         <meta-data
             android:name="android.notch_support"
             android:value="true" />
-
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
-
         <activity
             android:name=".Scanner"
             android:configChanges="orientation|screenSize|keyboardHidden" />
@@ -147,8 +141,7 @@
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:exported="true"/>
     </application>
 
 </manifest>

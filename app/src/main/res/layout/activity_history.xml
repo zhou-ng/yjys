@@ -24,7 +24,7 @@
         android:padding="20dp">
 
         <Button
-            android:id="@+id/quan"
+            android:id="@+id/selectAll"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical|center_horizontal"

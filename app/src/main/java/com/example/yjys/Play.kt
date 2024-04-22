@@ -7,6 +7,8 @@ import android.content.pm.ActivityInfo
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.util.Log
 import android.view.View
 import android.view.WindowInsets
@@ -176,22 +178,21 @@ class Play : BaseActivity() {
         //查询是否收藏
         val rawQuery1 = myDb?.rawQuery("select id from favorites where title = ?", arrayOf(title))
         if (rawQuery1?.count == 0) {
-            chang.setImageResource(R.drawable.shouchang_blue)
+            collect.setImageResource(R.drawable.shouchang_blue)
         } else {
-            chang.setImageResource(R.drawable.shouchang_yelow)
+            collect.setImageResource(R.drawable.shouchang_yelow)
         }
 
         //查询是否点赞
-        val rawQuery2 = myDb?.rawQuery("select id from likes where title = ?", arrayOf(title))
-        if (rawQuery2?.count == 0) {
-            praise.setImageResource(R.drawable.dianzan_white)
+        val praiseQuery = myDb?.rawQuery("select id from likes where title = ?", arrayOf(title))
+        if (praiseQuery?.count == 0) {
+            praise.setImageResource(R.drawable.praice_white)
         } else {
-            praise.setImageResource(R.drawable.dianzan_red)
+            praise.setImageResource(R.drawable.praise_red)
         }
 
-
         //收藏被点击
-        chang.setOnClickListener {
+        collect.setOnClickListener {
             val rawQuery1 = myDb?.rawQuery(
                 "select id from favorites where title = ?",
                 arrayOf(title)
@@ -205,20 +206,44 @@ class Play : BaseActivity() {
                         cattype
                     )
                 )
-                chang.setImageResource(R.drawable.shouchang_yelow)
+                collect.setImageResource(R.drawable.shouchang_yelow)
+                collect.visibility = View.GONE
+                collect_lottie.setAnimation("collectLottie.json")
+                collect_lottie.visibility = View.VISIBLE
+                collect_lottie.speed = 2f  // 设置动画速度
+                collect_lottie.playAnimation()  // 开始播放动画
                 Toast.makeText(activity, "收藏成功", Toast.LENGTH_SHORT).show()
+                // 添加震动反馈
+                val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator  // 获取Vibrator服务
+                //  大于Android 8.0使用VibrationEffect.createOneShot()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    vibrator.vibrate(VibrationEffect.createOneShot(20, VibrationEffect.DEFAULT_AMPLITUDE))
+                } else {
+                    @Suppress("DEPRECATION")
+                    vibrator.vibrate(20)
+                }
             } else {
                 myDb?.execSQL("delete from favorites where title=?", arrayOf(title))
-                chang.setImageResource(R.drawable.shouchang_blue)
+                collect.setImageResource(R.drawable.shouchang_blue)
                 Toast.makeText(activity, "已取消收藏", Toast.LENGTH_SHORT).show()
             }
+            collect_lottie.addAnimatorListener(object : Animator.AnimatorListener{
+                override fun onAnimationStart(animation: Animator) { }
+                override fun onAnimationEnd(animation: Animator) {
+                    collect_lottie.visibility = View.GONE
+                    collect.visibility = View.VISIBLE
+                }
+                override fun onAnimationCancel(animation: Animator) { }
+                override fun onAnimationRepeat(animation: Animator) {}
+            })
         }
+
 
         //点击点赞
         praise.setOnClickListener {
-            val zanQuery = myDb?.rawQuery(
+            val praiseQuery = myDb?.rawQuery(
                 "select id from likes where title = ?", arrayOf(title))
-            if (zanQuery?.count == 0) {
+            if (praiseQuery?.count == 0) {
                 myDb?.execSQL(
                     "insert into likes (title,img,url,cattype) values(?,?,?,?)", arrayOf(
                         title,
@@ -227,25 +252,31 @@ class Play : BaseActivity() {
                         cattype
                     )
                 )
-                praise.setImageResource(R.drawable.dianzan_red)
+                praise.setImageResource(R.drawable.praise_red)
                 praise.visibility = View.GONE
-
-                upvote.setAnimation("upvoteLottie.json")
-                upvote.visibility = View.VISIBLE
-                //设置动画播放速度
-                upvote.speed = 2.5f
-                //开始播放动画
-                upvote.playAnimation()
+                praise_lottie.setAnimation("praiseLottie.json")
+                praise_lottie.visibility = View.VISIBLE
+                praise_lottie.speed = 2f  //设置动画播放速度
+                praise_lottie.playAnimation()  //开始播放动画
+                // 添加震动反馈
+                val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator  // 获取Vibrator服务
+                //  大于Android 8.0使用VibrationEffect.createOneShot()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    vibrator.vibrate(VibrationEffect.createOneShot(20, VibrationEffect.DEFAULT_AMPLITUDE))
+                } else {
+                    @Suppress("DEPRECATION")
+                    vibrator.vibrate(20)
+                }
             } else {
                 myDb?.execSQL("delete from likes where title=?", arrayOf(title))
-                praise.setImageResource(R.drawable.dianzan_white)
+                praise.setImageResource(R.drawable.praice_white)
             }
 
             //动画效果监听
-            upvote.addAnimatorListener(object : Animator.AnimatorListener {
+            praise_lottie.addAnimatorListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator) {}
                 override fun onAnimationEnd(animation: Animator) {
-                    upvote.visibility = View.GONE
+                    praise_lottie.visibility = View.GONE
                     praise.visibility = View.VISIBLE
                 }
                 override fun onAnimationCancel(animation: Animator) {}

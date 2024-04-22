@@ -79,10 +79,10 @@
             android:layout_weight="1">
 
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/upvote"
+                android:id="@+id/praise_lottie"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:lottie_fileName="upvoteLottie.json"
+                android:layout_height="match_parent"
+                app:lottie_fileName="praiseLottie.json"
                 android:layout_weight="1"
                 android:visibility="gone" />
 
@@ -92,16 +92,24 @@
                 android:layout_weight="1"
                 android:scaleType="fitCenter"
                 android:id="@+id/praise"
-                android:src="@drawable/dianzan_white"
+                android:src="@drawable/praice_white"
                 android:clickable="true"
                 android:longClickable="true"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/collect_lottie"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:lottie_fileName="collectLottie.json"
+                android:layout_weight="1"
+                android:visibility="gone" />
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:scaleType="fitCenter"
-                android:id="@+id/chang"
+                android:id="@+id/collect"
                 android:src="@drawable/shouchang_blue" />
 
         </LinearLayout>

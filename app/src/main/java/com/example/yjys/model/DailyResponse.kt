@@ -5,8 +5,9 @@ import java.util.*
 
 class DailyResponse(val status: String, val result: Result) {
     companion object {
-        const val TYPE_HOR = 0
-        const val TYPE_VTL = 1
+        const val TYPE_TOP = 0
+        const val TYPE_CENTER = 1
+        const val TYPE_BOTTOM = 2
     }
     class Result(val daily: Daily)
     class Daily(val temperature: List<Temperature>, val skycon: List<Skycon>, @SerializedName("life_index") val lifeIndex: LifeIndex)

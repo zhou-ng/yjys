@@ -11,6 +11,9 @@ import java.util.Date
 
 
 class PictureActivity : AppCompatActivity() {
+    companion object{
+        const val CLEAR_DAY = "CLEAR_DAY"
+    }
     private lateinit var adapter: PictureAdapter
     private lateinit var recyclerView: RecyclerView
 
@@ -38,7 +41,7 @@ class PictureActivity : AppCompatActivity() {
             min = 15.0f
         )
         val topSkycon = DailyResponse.Skycon(
-            value = "CLEAR_DAY",
+            value = CLEAR_DAY,
             date = Date(2024 - 1900, 3, 22)
         )
         val topData = DailyResponse.CustomWeather(
@@ -53,7 +56,7 @@ class PictureActivity : AppCompatActivity() {
             min = 18.0f
         )
         val centerSkycon = DailyResponse.Skycon(
-            value = "PARTLY_CLOUDY_DAY",
+            value = CLEAR_DAY,
             date = Date(2024 - 1900, 3, 19)
         )
         val centerData = DailyResponse.CustomWeather(
@@ -68,7 +71,7 @@ class PictureActivity : AppCompatActivity() {
             min = 20.0f
         )
         val bottomSkycon = DailyResponse.Skycon(
-            value = "RAIN",
+            value = CLEAR_DAY,
             date = Date(2024 - 1900, 3, 20)
         )
         val bottomData = DailyResponse.CustomWeather(

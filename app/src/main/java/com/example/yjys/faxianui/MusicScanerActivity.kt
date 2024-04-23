@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.yjys.BaseActivity
 import com.example.yjys.R
 import com.example.yjys.adapter.MusicScannerListAdapter
 import com.example.yjys.entity.MusicScannerList
@@ -60,7 +59,7 @@ class MusicScanerActivity : AppCompatActivity() {
 
 
     fun initClick(){
-        imgback.setOnClickListener {
+        img_back.setOnClickListener {
             finish()
         }
         comTitle.text = "音乐搜索"

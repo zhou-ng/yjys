@@ -46,8 +46,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:gravity="center_horizontal|center_vertical"
-            android:text="电影标题"
-            android:id="@+id/stitle"
+            android:text="@string/move_title"
+            android:id="@+id/moveTitleTV"
             android:ellipsize="middle"
             android:textSize="15sp"
             android:singleLine="true" />

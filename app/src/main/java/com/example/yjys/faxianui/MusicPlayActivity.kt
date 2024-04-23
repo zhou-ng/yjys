@@ -185,7 +185,7 @@ class MusicPlayActivity : BaseActivity() {
             }
         }
 
-        imgback.setOnClickListener{
+        img_back.setOnClickListener{
             finish()
         }
 

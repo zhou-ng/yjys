@@ -18,7 +18,7 @@ object Repository {
             val places = placeResponse.places
             Result.success(places)
         } else {
-            Result.failure(RuntimeException("response status is ${placeResponse.status}"))
+            Result.failure(RuntimeException(placeResponse.status))
         }
     }
 
@@ -39,8 +39,8 @@ object Repository {
             } else {
                 Result.failure(
                     RuntimeException(
-                        "realtime response status is ${realtimeResponse.status}" +
-                                "daily response status is ${dailyResponse.status}"
+                        realtimeResponse.status +
+                                dailyResponse.status
                     )
                 )
             }

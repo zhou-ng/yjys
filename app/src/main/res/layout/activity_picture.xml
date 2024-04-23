@@ -32,7 +32,7 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_weight="10"
             android:gravity="center_vertical|center_horizontal"
-            android:text="图片展示"
+            android:text="@string/show_picture"
             android:textColor="#ffffff"
             android:textSize="15sp" />
 

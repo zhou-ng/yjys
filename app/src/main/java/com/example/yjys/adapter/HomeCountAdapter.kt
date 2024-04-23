@@ -40,7 +40,7 @@ class HomeCountAdapter(val context: Context,data1: List<MoverCount>) : BaseAdapt
             myHolder = MyHolder()
             view = LayoutInflater.from(context).inflate(R.layout.home_gridview_adapater,null)
             myHolder.img = view.findViewById(R.id.img)
-            myHolder.title = view.findViewById(R.id.stitle)
+            myHolder.title = view.findViewById(R.id.moveTitleTV)
             myHolder.count = view.findViewById(R.id.count)
             myHolder.juJi = view.findViewById(R.id.juJi)
             myHolder.gitem = view.findViewById(R.id.gitem)

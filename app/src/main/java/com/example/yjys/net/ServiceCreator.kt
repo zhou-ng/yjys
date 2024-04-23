@@ -1,13 +1,14 @@
 package com.example.yjys.net
 
+import com.example.yjys.constant.STANDARD_MAP_URL
+import com.example.yjys.constant.WEATHER_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceCreator {
-    private  const val BASE_URL = "https://api.caiyunapp.com/"
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl(WEATHER_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -17,10 +18,9 @@ object ServiceCreator {
 }
 
 object StandardMapServiceCreator {
-    private const val BASE_URL = "http://earthdq.thread0.com:8000/"
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl(STANDARD_MAP_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

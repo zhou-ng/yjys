@@ -46,7 +46,7 @@ class MusicActivity : BaseActivity() {
 
         activity = this
 
-        imgback.setOnClickListener{
+        img_back.setOnClickListener{
             finish()
         }
 

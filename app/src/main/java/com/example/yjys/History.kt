@@ -13,9 +13,9 @@ import kotlinx.android.synthetic.main.common_title.*
 
 class History : AppCompatActivity() {
 
-    var myDb : SQLiteDatabase? = null
+    private var myDb: SQLiteDatabase? = null
     var list = mutableListOf<Favorite>()
-    var favoritesAdapter : FavoritesAdapter? = null
+    private var favoritesAdapter: FavoritesAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +40,8 @@ class History : AppCompatActivity() {
             delSelectedItems()
         }
 
-        comTitle.text="播放历史"
-        imgback.setOnClickListener{
+        comTitle.text = getString(R.string.play_history)
+        img_back.setOnClickListener {
             finish()
         }
 
@@ -52,29 +52,26 @@ class History : AppCompatActivity() {
         ref()
     }
 
-    fun ref(){
-        list.clear()
+    private fun ref() {
+        val temp = mutableListOf<Favorite>()
         val rawQuery = myDb?.rawQuery("select * from history", null)
-        if (rawQuery?.moveToFirst()!!){
-            while (rawQuery.moveToNext()){
-                val id = rawQuery.getInt(rawQuery.getColumnIndex("id"))
-                val title =rawQuery.getString(rawQuery.getColumnIndex("title"))
-                val img =rawQuery.getString(rawQuery.getColumnIndex("img"))
-                val url =rawQuery.getString(rawQuery.getColumnIndex("url"))
-
-                list.add(Favorite(id, title, img, url))
-            }
-
+        while (rawQuery?.moveToNext() == true) {
+            val id = rawQuery.getInt(rawQuery.getColumnIndex("id"))
+            val title = rawQuery.getString(rawQuery.getColumnIndex("title"))
+            val img = rawQuery.getString(rawQuery.getColumnIndex("img"))
+            val url = rawQuery.getString(rawQuery.getColumnIndex("url"))
+            temp.add(Favorite(id, title, img, url))
         }
-        favoritesAdapter?.notifyDataSetChanged()
+
+        favoritesAdapter?.resetData(temp)
     }
 
     private fun updateSelectAllButton() {
         val isAllSelected = favoritesAdapter?.isAllItemsSelected() ?: false
         if (isAllSelected) {
-            selectAll.text = "全不选"
+            selectAll.text = getString(R.string.no_select_all)
         } else {
-            selectAll.text = "全选"
+            selectAll.text = getString(R.string.select_all)
         }
     }
 
@@ -86,7 +83,7 @@ class History : AppCompatActivity() {
             }
         }
         if (selectedItems.isEmpty()) {
-            Toast.makeText(this, "未选择任何选项", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.no_select_item), Toast.LENGTH_SHORT).show()
             return
         }
         for (selectedItem in selectedItems) {

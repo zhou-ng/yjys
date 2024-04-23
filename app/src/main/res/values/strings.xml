@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">永久影视</string>
+    <string name="temperature_range">%d ~ %d ℃</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="company_name">厦门鸿物世代科技有限公司</string>
+    <string name="about_us">关于我们</string>
+    <string name="user_agreement">用户协议</string>
+    <string name="feedback">意见反馈</string>
+    <string name="thank_suppose">鼓励支持</string>
+    <string name="title">标题</string>
+    <string name="version_number">version 1.0</string>
+    <string name="check_version">检查新版本</string>
+    <string name="developing">开发中</string>
+    <string name="already_new_version">已是最新版本</string>
+    <string name="no_select_all">全不选</string>
+    <string name="select_all">全选</string>
+    <string name="play_history">播放历史</string>
+    <string name="no_select_item">未选择任何选项</string>
+    <string name="my_favorite">我的收藏</string>
+    <string name="location_lng">location_lng</string>
+    <string name="location_lat">location_lat</string>
+    <string name="place_name">place_name</string>
+    <string name="no_query_place">未能查询到任何地点</string>
+    <string name="my_like">我的点赞</string>
+    <string name="yyyy_mm_dd">yyyy-MM-dd</string>
+    <string name="un_get_weather">无法获取天气信息</string>
+    <string name="delete">删除</string>
+    <string name="air_quality">空气指数</string>
+    <string name="show_picture">图片展示</string>
+    <string name="move_title">电影标题</string>
 </resources>

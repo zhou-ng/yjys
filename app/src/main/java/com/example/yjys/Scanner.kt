@@ -4,11 +4,9 @@ import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
 import android.view.WindowManager
-import android.webkit.URLUtil
 import android.widget.Toast
 import com.example.yjys.adapter.ScannerGridViewAdapter
 import com.example.yjys.config.AppConfig
-import com.example.yjys.entity.HomeBannerDto
 import com.example.yjys.entity.MoverCount
 import com.example.yjys.entity.SearchDto
 import com.example.yjys.utils.MyCallBack
@@ -42,7 +40,7 @@ class Scanner : BaseActivity() {
         if (string != null){
             scan_edit.setText(string)
         }
-        imgback.setOnClickListener {
+        img_back.setOnClickListener {
             finish()
         }
         scan_edit.requestFocus()

@@ -1,5 +1,6 @@
 package com.example.yjys
 
+import android.annotation.SuppressLint
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,12 +13,12 @@ import kotlinx.android.synthetic.main.activity_favorites.del
 import kotlinx.android.synthetic.main.activity_favorites.selectAll
 import kotlinx.android.synthetic.main.activity_favorites.rev
 import kotlinx.android.synthetic.main.common_title.comTitle
-import kotlinx.android.synthetic.main.common_title.imgback
+import kotlinx.android.synthetic.main.common_title.img_back
 
 class LikeActivity : AppCompatActivity() {
-    private  var myDb : SQLiteDatabase? = null
+    private var myDb: SQLiteDatabase? = null
     private var list = mutableListOf<Favorite>()
-    private var favoritesAdapter : FavoritesAdapter? = null
+    private var favoritesAdapter: FavoritesAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_like)
@@ -31,9 +32,9 @@ class LikeActivity : AppCompatActivity() {
         rev.adapter = favoritesAdapter
         ref()
 
-        comTitle.text="我的点赞"  // 设置页面标题
+        comTitle.text = getString(R.string.my_like)  // 设置页面标题
         //  页面返回
-        imgback.setOnClickListener{
+        img_back.setOnClickListener {
             finish()
         }
         //  全选
@@ -52,47 +53,46 @@ class LikeActivity : AppCompatActivity() {
         ref()
     }
 
-    fun ref(){
-        list.clear()
-        val rawQuery = myDb?.rawQuery("select * from likes", null)
-        if (rawQuery?.moveToFirst()!!){
-            while (rawQuery.moveToNext()){
-                val id = rawQuery.getInt(rawQuery.getColumnIndex("id"))
-                val title =rawQuery.getString(rawQuery.getColumnIndex("title"))
-                val img =rawQuery.getString(rawQuery.getColumnIndex("img"))
-                val url =rawQuery.getString(rawQuery.getColumnIndex("url"))
-
-                list.add(Favorite(id, title, img, url))
-            }
-
+    private fun ref() {
+        val temp = mutableListOf<Favorite>()
+        val rawQuery = myDb?.rawQuery("SELECT * FROM likes", null)
+        while (rawQuery?.moveToNext() == true) {
+            val id = rawQuery.getInt(rawQuery.getColumnIndex("id"))
+            val title = rawQuery.getString(rawQuery.getColumnIndex("title"))
+            val img = rawQuery.getString(rawQuery.getColumnIndex("img"))
+            val url = rawQuery.getString(rawQuery.getColumnIndex("url"))
+            temp.add(Favorite(id, title, img, url))
         }
-        favoritesAdapter?.notifyDataSetChanged()
+        favoritesAdapter?.resetData(temp)
     }
 
     private fun updateSelectAllButton() {
         val isAllSelected = favoritesAdapter?.isAllItemsSelected() ?: false
         if (isAllSelected) {
-            selectAll.text = "全不选"
+            selectAll.text = getString(R.string.no_select_all)
         } else {
-            selectAll.text = "全选"
+            selectAll.text = getString(R.string.select_all)
         }
     }
+
     private fun delSelectedItems() {
-        val selectedItems = mutableListOf<Favorite>()
-        for (favorite in list) {
-            if (favorite.checkSelect) {
-                selectedItems.add(favorite)
+        favoritesAdapter?.let {
+            val selectedItems = mutableListOf<Favorite>()
+            for (favorite in it.dataList) {
+                if (favorite.checkSelect) {
+                    selectedItems.add(favorite)
+                }
             }
+            if (selectedItems.isEmpty()) {
+                Toast.makeText(this, getString(R.string.no_select_item), Toast.LENGTH_SHORT).show()
+                return
+            }
+            for (selectedItem in selectedItems) {
+                myDb?.execSQL("DELETE FROM likes WHERE id = ?", arrayOf(selectedItem.id))
+
+            }
+            favoritesAdapter?.deleteData(selectedItems)
+            updateSelectAllButton()
         }
-        if (selectedItems.isEmpty()){
-            Toast.makeText(this,"您未选择任何选项",Toast.LENGTH_SHORT).show()
-            return
-        }
-        for (selectedItem in selectedItems) {
-            myDb?.execSQL("DELETE FROM likes WHERE id = ?", arrayOf(selectedItem.id))
-            list.remove(selectedItem)
-        }
-        favoritesAdapter?.notifyDataSetChanged()
-        updateSelectAllButton()
     }
 }

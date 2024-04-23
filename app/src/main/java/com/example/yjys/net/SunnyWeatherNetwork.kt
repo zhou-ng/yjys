@@ -29,7 +29,7 @@ object SunnyWeatherNetwork {
                     val body = response.body()
                     if (body != null) continuation.resume(body)
                     else continuation.resumeWithException(
-                        RuntimeException("response body is null"))
+                        RuntimeException())
                 }
                 override fun onFailure(call: Call<T>, t: Throwable) {
                     continuation.resumeWithException(t)

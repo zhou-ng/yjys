@@ -18,7 +18,7 @@ class CommonTitle(context: Context,attributeSet: AttributeSet) :LinearLayout(con
     init {
         val inflate = LayoutInflater.from(context).inflate(R.layout.common_title, this)
         title = inflate.findViewById(R.id.comTitle)
-        imgback = inflate.findViewById(R.id.imgback)
+        imgback = inflate.findViewById(R.id.img_back)
         setter = inflate.findViewById(R.id.setter)
         imgback?.setOnClickListener {
             val activity = context as Activity

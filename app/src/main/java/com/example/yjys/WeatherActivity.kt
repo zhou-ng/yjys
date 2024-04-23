@@ -70,13 +70,13 @@ class WeatherActivity : AppCompatActivity() {
 
 //        setContentView(R.layout.activity_weather)
         if (viewModel.locationLng.isEmpty()) {
-            viewModel.locationLng = intent.getStringExtra("location_lng") ?: ""
+            viewModel.locationLng = intent.getStringExtra(getString(R.string.location_lng)) ?: ""
         }
         if (viewModel.locationLat.isEmpty()) {
-            viewModel.locationLat = intent.getStringExtra("location_lat") ?: ""
+            viewModel.locationLat = intent.getStringExtra(getString(R.string.location_lat)) ?: ""
         }
         if (viewModel.placeName.isEmpty()) {
-            viewModel.placeName = intent.getStringExtra("place_name") ?: ""
+            viewModel.placeName = intent.getStringExtra(getString(R.string.place_name)) ?: ""
         }
 
         viewModel.weatherLiveData.observe(this, Observer { result ->
@@ -84,7 +84,7 @@ class WeatherActivity : AppCompatActivity() {
             if (weather != null) {
                 showWeatherInfo(weather)
             } else {
-                Toast.makeText(this, "无法获取天气信息", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.un_get_weather), Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }
             swipeRefresh.isRefreshing =false
@@ -123,7 +123,8 @@ class WeatherActivity : AppCompatActivity() {
         val currentTempText = "${realtime.temperature.toInt()} ℃"
         currentTemp?.text = currentTempText
         currentSky?.text = getSky(realtime.skycon).info
-        val currentPM25Text = "空气指数 ${realtime.airQuality.aqi.chn.toInt()}"
+//        val currentPM25Text = "空气指数 ${realtime.airQuality.aqi.chn.toInt()}"
+        val currentPM25Text = String.format("%s ${realtime.airQuality.aqi.chn.toInt()}", getString(R.string.air_quality))
         currentAQI?.text = currentPM25Text
         nowLayout?.setBackgroundResource(getSky(realtime.skycon).bg)
         // 填充forecast.xml布局中的数据
@@ -139,7 +140,7 @@ class WeatherActivity : AppCompatActivity() {
             val skyIcon = view.findViewById(R.id.hor_skyIcon) as ImageView
             val skyInfo = view.findViewById(R.id.hor_skyInfo) as TextView
             val temperatureInfo = view.findViewById(R.id.hor_temperatureInfo) as TextView
-            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val simpleDateFormat = SimpleDateFormat(getString(R.string.yyyy_mm_dd), Locale.getDefault())
             dateInfo.text = simpleDateFormat.format(skycon.date)
             val sky = getSky(skycon.value)
             skyIcon.setImageResource(sky.icon)

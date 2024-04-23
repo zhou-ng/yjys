@@ -15,7 +15,7 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/imgback"
+            android:id="@+id/img_back"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="center_vertical"
@@ -32,7 +32,7 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_weight="10"
             android:gravity="center_vertical|center_horizontal"
-            android:text="标题"
+            android:text="@string/title"
             android:textColor="#ffffff"
             android:textSize="15sp" />
 
@@ -75,7 +75,7 @@
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:text="删除"
+            android:text="@string/delete"
             android:textColor="#fff"
             android:textSize="20sp" />
 

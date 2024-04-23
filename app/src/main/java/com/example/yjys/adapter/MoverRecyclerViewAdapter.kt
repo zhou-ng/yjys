@@ -22,7 +22,7 @@ class MoverRecyclerViewAdapter(val context: Context,data: List<MoverCount>) :
 
     inner class MyHolder(view: View) : RecyclerView.ViewHolder(view) {
          var img : ImageView = view.findViewById(R.id.img)
-         var title : TextView = view.findViewById(R.id.stitle)
+         var title : TextView = view.findViewById(R.id.moveTitleTV)
          var count : TextView = view.findViewById(R.id.count)
          var juJi : TextView = view.findViewById(R.id.juJi)
         var homeItem : LinearLayout = view.findViewById(R.id.home_item)
